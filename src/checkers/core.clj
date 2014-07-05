@@ -1,7 +1,8 @@
 (ns checkers.core
-  (:gen-class))
+  (:gen-class)
+  (:use [checkers.logic.main])
+  (:require [checkers.globals :as gl]))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (play))

@@ -7,11 +7,21 @@
 
 (defn lost?
   []
-  (<= @gl/white-men-count 0))
+  (>=
+   0
+   (count (filter (not nil?)
+                  (map (fn [men] (if (= (get men :color) "#FFFFFF")
+                                     (get men :color)))
+                       @gl/men)))))
 
 (defn won?
   []
-  (<= @gl/black-men-count 0))
+  (>=
+   0
+   (count (filter (not nil?)
+                  (map (fn [men] (if (= (get men :color) "#000000")
+                                     (get men :color)))
+                       @gl/men)))))
 
 (defn reset-world
   []

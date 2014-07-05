@@ -10,18 +10,18 @@
 
 (defn draw-squares
   [g]
-  (doseq [square @gl/white-squares]
+  (doseq [square @gl/squares]
     (let [{:keys [x y width height color]} square]
       (draw g
-            (rect x y gl/square-size gl/square-size)
+            (rect x y width height)
             (style :background color)))))
 
 (defn draw-men
   [g]
-  (doseq [man @gl/white-men]
+  (doseq [man @gl/men]
     (let [{:keys [x y radius color]}  man]
       (draw g
-            (circle x y gl/man-radius)
+            (circle x y adius)
             (style :background color)))))
 
 (defn draw-world

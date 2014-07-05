@@ -3,7 +3,7 @@
   (:require [checkers.globals :as gl]))
 
 (defn define-square
-  [x y color]
+  [x y width height color]
   {:x x :y y :width width :height height :color color})
 
 (defn define-man
@@ -30,7 +30,7 @@
 
 (def men-count 12)
 
-(defn- generate-texture-maps
+(defn generate-texture-maps
   ([first-x-start first-y-start second-x-start second-y-start]
     (into
       (for [x (range first-x-start 640 160)
@@ -48,29 +48,29 @@
             y (range second-y-start end-of-red-men 160)]
         [x y]))))
 
-(defn- squares [first-x-start
-                first-y-start
-                second-x-start
-                second-y-start
-                color]
+(defn squares [first-x-start
+               first-y-start
+               second-x-start
+               second-y-start
+               color]
   (for [[x y] (generate-texture-maps first-x-start
                                      first-y-start
                                      second-x-start
                                      second-y-start)]
     (define-square x y 80 80 color)))
 
-(defn- men [first-x-start
-            first-y-start
-            second-x-start
-            second-y-start
-            color
-            end-of-red-men]
+(defn men [first-x-start
+           first-y-start
+           second-x-start
+           second-y-start
+           color
+           end-of-red-men]
   (for [[x y] (generate-texture-maps first-x-start
                                      first-y-start
                                      second-x-start
                                      second-y-start
-                                     end-of-red-men)])
-  (define-man x y 30 color))
+                                     end-of-red-men)]
+    (define-man x y 30 color)))
 
 (def white-squares (squares 0 0 80 80 "#FFFFFF"))
 
